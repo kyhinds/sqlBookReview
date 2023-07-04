@@ -13,18 +13,8 @@ const pool = new Pool({
     port: 5432
 });
 
-app.get('/api/:type/reviewerPairs', async (req, res) => {
+app.get('/api/reviewerPairs', async (req, res) => {
     try {
-        const { type } = req.params;
-        let tableName;
-        if(type === 'movies'){
-            tableName = 'movies';
-        } else if (type === 'shows'){
-            tableName = 'shows';
-        } else {
-            return res.status(400).json({ error: 'Invalid type provided. Use either "movies" or "shows".' });
-        }
-
         const queryResult = await pool.query(`
             SELECT 
                 DISTINCT LEAST(R1.name, R2.name) AS name1,
@@ -32,7 +22,7 @@ app.get('/api/:type/reviewerPairs', async (req, res) => {
             FROM 
                 ratings AS RA1
             JOIN 
-                ratings AS RA2 ON RA1.${tableName}_id = RA2.${tableName}_id AND RA1.reviewer_id <> RA2.reviewer_id
+                ratings AS RA2 ON RA1.movie_id = RA2.movie_id AND RA1.reviewer_id <> RA2.reviewer_id
             JOIN 
                 reviewers AS R1 ON RA1.reviewer_id = R1.id
             JOIN 
