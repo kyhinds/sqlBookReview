@@ -11,7 +11,8 @@ INSERT INTO movies (id, title, year, director) VALUES
 (101, 'A Tale Of Two Cities', 1859, 'Charles Dickens'),
 (102, 'The Lord of the Rings', 1955, 'J. R. R. Tolkien'),
 (103, 'The Godfather', 1972, 'Francis Ford Coppola'),
-(104, 'The Shawshank Redemption', 1994, 'Frank Darabont');
+(104, 'The Shawshank Redemption', 1994, 'Frank Darabont'),
+ON CONFLICT (id) DO NOTHING;
 
 -- Create the 'reviewers' table
 CREATE TABLE IF NOT EXISTS reviewers (
@@ -23,7 +24,8 @@ CREATE TABLE IF NOT EXISTS reviewers (
 INSERT INTO reviewers (id, name) VALUES
 (15201, 'Steve Jobs'),
 (53202, 'Elon Musk'),
-(44203, 'Bill Gates');
+(44203, 'Bill Gates'),
+ON CONFLICT (id) DO NOTHING;
 
 -- Create the 'ratings' table
 CREATE TABLE IF NOT EXISTS ratings (
@@ -39,4 +41,5 @@ INSERT INTO ratings (reviewer_id, movie_id, rating, rating_date) VALUES
 (15201, 101, 4, '2015-06-16'),
 (53202, 103, 4, '2015-07-01'),
 (44203, 102, 5, '2015-07-02'),
-(44203, 103, 3, '2015-08-10');
+(44203, 103, 3, '2015-08-10'),
+ON CONFLICT (reviewer_id) DO NOTHING;
