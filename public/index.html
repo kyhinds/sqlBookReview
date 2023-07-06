@@ -3,28 +3,82 @@
 <head>
   <title>Movie Review App</title>
   <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
     ul {
       list-style-type: none;
       padding: 0;
     }
+
     li {
       margin-bottom: 10px;
     }
+
     a {
       text-decoration: none;
       color: blue;
     }
+
+    .form-container {
+      display: flex;
+    }
+
+    .form-input {
+      flex-grow: 1;
+      padding: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      margin-right: 5px;
+    }
+
+    .form-button {
+      padding: 5px 10px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
   </style>
+  <script>
+    function submitForm() {
+      const movieId = document.getElementById('movieIdInput').value;
+      window.location.href = `/api/movies/${movieId}/reviewers`;
+      return false;
+    }
+  </script>
 </head>
 <body>
-  <h1>Movie Review App</h1>
-  <h2>API Routes:</h2>
-  <ul>
-    <li><a href="/api/reviewerPairs">View Reviewer Pairs</a></li>
-    <li><a href="/api/reviewerSameRating">View Reviewer Pairs with Same Ratings</a></li>
-    <li><a href="/api/ratings">View All Ratings</a></li>
-    <li><a href="/api/reviewers">View All Reviewers</a></li>
-    <li><a href="/api/movies">View All Movies</a></li>
-  </ul>
+  <div class="container">
+    <h1>Movie Review App</h1>
+    <h2>API Routes:</h2>
+    <ul>
+      <li><a href="/api/reviewerPairs">View Reviewer Pairs</a></li>
+      <li><a href="/api/reviewerSameRating">View Reviewer Pairs with Same Ratings</a></li>
+      <li><a href="/api/ratings">View All Ratings</a></li>
+      <li><a href="/api/reviewers">View All Reviewers</a></li>
+      <li>
+        <form onsubmit="return submitForm()" class="form-container">
+          <input type="text" id="movieIdInput" class="form-input" placeholder="Enter movie ID">
+          <button type="submit" class="form-button">View Reviewers of this Movie</button>
+        </form>
+      </li>
+    </ul>
+  </div>
 </body>
 </html>
