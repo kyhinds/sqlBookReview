@@ -26,6 +26,7 @@ curl -X GET 'http://localhost:3000/api/reviewerPairs'
 curl -X GET 'http://localhost:3000/api/movies/:id/reviewers'
 
 The API should respond with a JSON array of reviewer pairs or reviewers, depending on the endpoint you called.
+There is also a basic html page with links to test the API endpoints
 
 # Stopping the Services
 To stop the running services, press CTRL+C in the terminal window where docker-compose up is running. Then, run docker-compose down to clean up the environment.
